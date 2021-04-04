@@ -43,4 +43,6 @@ endorsing peer and commiting peer can be seen
 
 8) generate-ccp.sh :- to generate json files
 
+9) node app.js
+
 https://github.com/IBM/blockchain-application-using-fabric-java-sdk
