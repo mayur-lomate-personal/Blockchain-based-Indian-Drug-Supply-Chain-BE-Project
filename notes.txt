@@ -1,0 +1,46 @@
+installation :- https://github.com/samlinux/htsc/blob/master/meetup-061020/index.md
+
+1) crypto-config.yaml :- to add organizations peers and users
+2) cofigtx.yaml :- to cofigure ports and orderer and read write permissions
+3) create-artifacts.sh :- to generate certificates and genesis blocks
+4) docker-compose.yaml :- to configure images
+5) base.yaml :- common configurations for all the peers, we can see the extend in docker-compose.yaml
+
+- If you want to register and enroll new user in running network ca is required
+- We generally use CA for production and cryptogen for test environment
+
+to run :- docker-compose up -d
+
+docker exec -it {peer name} sh :- to enter into a peer
+peer channel list :- to show list of channels peer is connected to
+exit :- to exit from peer
+
+leader peer :- leader peer on the channel, pulls the data from the ordering service and later on disseminate data to all peers within the same organization
+
+leader election :- election to select one of the peer as leader peer
+2 types :-
+static  :- admin manually configure's a peer in an organization defined in core.yaml file
+peer:
+	Gossip:
+		useLeaderElection:false
+		orgLeader: true
+dynamic :- dynamically selected, heart-beat message
+peer:
+	Gossip:
+		useLeaderElection: true
+		orgLeader: false
+
+anchor peer :- to know peers of other organization, defined in configtx.yaml
+
+
+docker ps :- to check if network is running
+run before executing below :- docker-compose up -d
+
+6) createChannel.sh
+7) deployChaincode.sh :- for installing chain code
+
+endorsing peer and commiting peer can be seen
+
+8) generate-ccp.sh :- to generate json files
+
+https://github.com/IBM/blockchain-application-using-fabric-java-sdk
